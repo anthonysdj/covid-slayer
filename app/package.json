@@ -1,0 +1,22 @@
+{
+    "name": "covid_slayer",
+    "version": "1.0.0",
+    "description": "Tekken like fighting game",
+    "author": "Ton DJ <tonsdejesus@gmail.com>",
+    "main": "server.js",
+    "scripts": {
+        "start": "nodemon server.js"
+    },
+    "dependencies": {
+        "bcrypt": "^5.0.0",
+        "config": "^3.3.1",
+        "express": "^4.16.1",
+        "joi": "^17.1.1",
+        "jsonwebtoken": "^8.5.1",
+        "moment": "^2.27.0",
+        "moment-timezone": "^0.5.31",
+        "mongoose": "^5.9.27",
+        "multer": "^1.4.2",
+        "nodemon": "^2.0.4"
+    }
+}

@@ -1,0 +1,53 @@
+version: "3.5"
+
+services:
+    covid-slayer:
+        container_name: covid-slayer
+        image: node:12
+        working_dir: '/usr/src/app'
+        environment:
+            - JWT_PRIVATE_KEY=secret_private_key
+            - DB_USER=root
+            - DB_PASS=example
+            - PORT=8080
+        ports:
+            - 8080:8080
+        command: bash -c "npm install && npm start"
+        depends_on:
+            - mongo
+        volumes:
+            - ./app:/usr/src/app
+        networks:
+            - srv_backend
+
+    mongo:
+        image: mongo
+        container_name: mongo
+        restart: always
+        volumes:
+            - mongodata:/data/db
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: example
+        networks:
+            - srv_backend
+
+    mongo-express:
+        image: mongo-express
+        container_name: mongo-express
+        restart: always
+        ports:
+            - 8081:8081
+        environment:
+            ME_CONFIG_MONGODB_ADMINUSERNAME: root
+            ME_CONFIG_MONGODB_ADMINPASSWORD: example
+        networks:
+            - srv_backend
+
+volumes:
+    mongodata:
+        name: mongodata
+
+networks:
+    srv_backend:
+        name: srv_backend
